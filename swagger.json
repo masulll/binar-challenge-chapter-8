@@ -1,0 +1,257 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Chapter 8 Sultan Rayhan",
+    "description": "Dokumentasi project application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/license/MIT"
+    }
+  },
+  "host": "localhost:4000",
+  "basePath": "/",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "Players",
+      "description": "API for players in the system"
+    },
+    {
+      "name": "Experiences",
+      "description": "API for player's experience in the system"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "Register player to the system",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          },
+          "400": {
+            "description": "Username or email cannot empty, password cannot be empty"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "query player info from the server",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "description": "The user name for get data",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "The email for get data",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "experience",
+            "in": "query",
+            "description": "experiences",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "lvl",
+            "in": "query",
+            "description": "levels",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "query player by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of player to update experience",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          },
+          "404": {
+            "description": "Not found, player with {id} not found"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "update player by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of player to update experience",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Player with {id} successfully updated",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          },
+          "500": {
+            "description": "failed to update"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Players"
+        ],
+        "summary": "delete player by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of player to update experience",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Player with {id}, was deleted successfully",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          },
+          "400": {
+            "description": "Cannot delete Player with {id}. Maybe Player was not found!"
+          }
+        }
+      }
+    },
+    "/exp/{id}": {
+      "put": {
+        "tags": [
+          "Experiences"
+        ],
+        "summary": "Update player experience",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of player to update experience",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "in": "body",
+            "name": "exp",
+            "description": "The experience to update",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Player"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Player": {
+      "required": [
+        "password",
+        "username",
+        "email",
+        "name"
+      ],
+      "properties": {
+        "password": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "experience": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "lvl": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
