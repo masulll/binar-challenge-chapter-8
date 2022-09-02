@@ -10,17 +10,10 @@
     }
   },
   "host": "localhost:4000",
-  "basePath": "/",
-  "schemes": [
-    "http",
-    "https"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "basePath": "/api",
+  "schemes": ["http", "https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "tags": [
     {
       "name": "Players",
@@ -34,9 +27,7 @@
   "paths": {
     "/": {
       "post": {
-        "tags": [
-          "Players"
-        ],
+        "tags": ["Players"],
         "summary": "Register player to the system",
         "parameters": [
           {
@@ -62,9 +53,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Players"
-        ],
+        "tags": ["Players"],
         "summary": "query player info from the server",
         "parameters": [
           {
@@ -108,9 +97,7 @@
     },
     "/{id}": {
       "get": {
-        "tags": [
-          "Players"
-        ],
+        "tags": ["Players"],
         "summary": "query player by id",
         "parameters": [
           {
@@ -135,9 +122,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Players"
-        ],
+        "tags": ["Players"],
         "summary": "update player by id",
         "parameters": [
           {
@@ -162,9 +147,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Players"
-        ],
+        "tags": ["Players"],
         "summary": "delete player by id",
         "parameters": [
           {
@@ -191,9 +174,7 @@
     },
     "/exp/{id}": {
       "put": {
-        "tags": [
-          "Experiences"
-        ],
+        "tags": ["Experiences"],
         "summary": "Update player experience",
         "parameters": [
           {
@@ -227,12 +208,7 @@
   },
   "definitions": {
     "Player": {
-      "required": [
-        "password",
-        "username",
-        "email",
-        "name"
-      ],
+      "required": ["password", "username", "email", "name"],
       "properties": {
         "password": {
           "type": "string"
